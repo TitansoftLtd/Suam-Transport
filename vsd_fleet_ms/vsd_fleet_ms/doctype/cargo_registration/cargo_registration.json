@@ -1,0 +1,354 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-05-25 10:51:49.442328",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "based_on",
+  "seal_number",
+  "column_break_ta7ta",
+  "transport_type",
+  "naming_series",
+  "company",
+  "section_break_dgev",
+  "purchase_order",
+  "column_break_lvfk",
+  "po_customer",
+  "section_break_nwlh",
+  "sales_order",
+  "column_break_kbwe",
+  "so_customer",
+  "section_break_sbow",
+  "sales_invoice",
+  "column_break_qfhy",
+  "si_customer",
+  "section_break_gqky",
+  "stock_transfer",
+  "column_break_vzgn",
+  "warehouse",
+  "column_break_ecoc",
+  "st_customer",
+  "section_break_evut",
+  "delivery_note",
+  "column_break_bxas",
+  "dn_customer",
+  "section_break_xetp",
+  "cargo_registration_details",
+  "section_break_fuqjo",
+  "cargo_details",
+  "section_break_er7n8",
+  "column_break_wl4cu",
+  "create_invoice",
+  "amended_from",
+  "request_funds_section",
+  "requested_fund",
+  "section_break_32ewt",
+  "column_break_4bmj4",
+  "column_break_sx93e",
+  "request_payment"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_ta7ta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transport_type",
+   "fieldtype": "Select",
+   "label": "Transport Type",
+   "options": "Cross Border\nInternal"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "CRG0-REG-.YYYY.-."
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "section_break_fuqjo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cargo_details",
+   "fieldtype": "Table",
+   "label": "Cargo Details",
+   "options": "Cargo Detail"
+  },
+  {
+   "fieldname": "create_invoice",
+   "fieldtype": "Button",
+   "label": "Create Invoice",
+   "width": "100"
+  },
+  {
+   "fieldname": "column_break_wl4cu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_er7n8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cargo Registration",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "request_funds_section",
+   "fieldtype": "Section Break",
+   "label": "Request Funds"
+  },
+  {
+   "fieldname": "requested_fund",
+   "fieldtype": "Table",
+   "options": "Requested Fund Details"
+  },
+  {
+   "fieldname": "section_break_32ewt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_4bmj4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_sx93e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "request_payment",
+   "fieldtype": "Link",
+   "options": "Requested Payment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "based_on",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Based On",
+   "options": "\nPurchase Order\nSales Order\nSales Invoice\nStock Transfer\nDelivery Note"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Stock Transfer\"",
+   "fieldname": "seal_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Seal Number"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Purchase Order\"",
+   "fieldname": "section_break_dgev",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Purchase Order\"",
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Order",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "column_break_lvfk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Purchase Order\"",
+   "fetch_from": "purchase_order.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "po_customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Order\"",
+   "fieldname": "section_break_nwlh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Order\"",
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Order",
+   "options": "Sales Order"
+  },
+  {
+   "fieldname": "column_break_kbwe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Order\"",
+   "fetch_from": "sales_order.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "so_customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Invoice\"",
+   "fieldname": "section_break_sbow",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Invoice\"",
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fieldname": "column_break_qfhy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Sales Invoice\"",
+   "fetch_from": "sales_invoice.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "si_customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Stock Transfer\"",
+   "fieldname": "section_break_gqky",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Stock Transfer\"",
+   "fieldname": "stock_transfer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Stock Transfer",
+   "options": "Stock Entry"
+  },
+  {
+   "fieldname": "column_break_vzgn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Stock Transfer\"",
+   "fetch_from": "stock_transfer.to_warehouse",
+   "fetch_if_empty": 1,
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Target Warehouse"
+  },
+  {
+   "fieldname": "column_break_ecoc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Stock Transfer\"",
+   "fieldname": "st_customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Delivery Note\"",
+   "fieldname": "section_break_evut",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Delivery Note\"",
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "label": "Delivery Note",
+   "options": "Delivery Note"
+  },
+  {
+   "fieldname": "column_break_bxas",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Delivery Note\"",
+   "fetch_from": "delivery_note.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "dn_customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "fieldname": "section_break_xetp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cargo_registration_details",
+   "fieldtype": "Table",
+   "label": "Cargo Registration Details",
+   "options": "Cargo Registration Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-04 07:59:47.319187",
+ "modified_by": "Administrator",
+ "module": "VSD Fleet MS",
+ "name": "Cargo Registration",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}
