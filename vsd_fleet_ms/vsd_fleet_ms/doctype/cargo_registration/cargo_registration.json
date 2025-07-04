@@ -18,7 +18,7 @@
   "section_break_dgev",
   "purchase_order",
   "column_break_lvfk",
-  "po_customer",
+  "supplier",
   "section_break_nwlh",
   "sales_order",
   "column_break_kbwe",
@@ -175,14 +175,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.based_on == \"Purchase Order\"",
-   "fetch_from": "purchase_order.customer_name",
-   "fetch_if_empty": 1,
-   "fieldname": "po_customer",
-   "fieldtype": "Data",
-   "label": "Customer"
-  },
-  {
    "depends_on": "eval:doc.based_on == \"Sales Order\"",
    "fieldname": "section_break_nwlh",
    "fieldtype": "Section Break"
@@ -304,12 +296,20 @@
    "fieldtype": "Table",
    "label": "Cargo Registration Details",
    "options": "Cargo Registration Details"
+  },
+  {
+   "depends_on": "eval:doc.based_on == \"Purchase Order\"",
+   "fetch_from": "purchase_order.supplier_name",
+   "fetch_if_empty": 1,
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "label": "Supplier"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-04 07:59:47.319187",
+ "modified": "2025-07-04 16:50:49.879593",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Cargo Registration",
