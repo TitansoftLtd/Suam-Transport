@@ -81,64 +81,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Trips",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Trip Location",
-   "link_count": 0,
-   "link_to": "Trip Locations",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Trip Location Type",
-   "link_count": 0,
-   "link_to": "Trip Locations Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Cargo Type",
-   "link_count": 0,
-   "link_to": "Cargo Types",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Trip Fixed Expense",
-   "link_count": 0,
-   "link_to": "Fixed Expenses",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Truck & Trailer Inspection",
-   "link_count": 0,
-   "link_to": "Truck and Trailer Inspection",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Transactions",
    "link_count": 6,
    "onboard": 0,
@@ -249,6 +191,7 @@
    "link_to": "Trip Report and Expenses",
    "link_type": "Report",
    "onboard": 0,
+   "report_ref_doctype": "Trips",
    "type": "Link"
   },
   {
@@ -260,9 +203,78 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trips",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trip Location",
+   "link_count": 0,
+   "link_to": "Trip Locations",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trip Location Type",
+   "link_count": 0,
+   "link_to": "Trip Locations Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cargo Type",
+   "link_count": 0,
+   "link_to": "Cargo Types",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trip Fixed Expense",
+   "link_count": 0,
+   "link_to": "Fixed Expenses",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Truck & Trailer Inspection",
+   "link_count": 0,
+   "link_to": "Truck and Trailer Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trip Routes",
+   "link_count": 0,
+   "link_to": "Trip Routes",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-05-06 12:10:09.083876",
+ "modified": "2025-07-05 14:42:30.693647",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Fleet MS",

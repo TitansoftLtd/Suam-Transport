@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "customer",
   "posting_date",
   "based_on",
   "seal_number",
@@ -304,12 +305,19 @@
    "fieldname": "supplier",
    "fieldtype": "Data",
    "label": "Supplier"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-04 16:50:49.879593",
+ "modified": "2025-07-05 17:22:34.068711",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Cargo Registration",
