@@ -62,6 +62,62 @@ frappe.ui.form.on('Cargo Registration', {
 			frappe.msgprint(__("No Row is Selected!"));
 		}
 	},
+
+
+	// Custom MBQ
+    based_on: function(frm) {
+        frm.clear_table('cargo_registration_details');
+        frm.refresh_field('cargo_registration_details');
+    },
+
+    purchase_order: function(frm) {
+        if (frm.doc.based_on === 'Purchase Order' && frm.doc.purchase_order) {
+            populate_cargo_items(frm, 'Purchase Order', frm.doc.purchase_order);
+        }
+    },
+
+    sales_order: function(frm) {
+        if (frm.doc.based_on === 'Sales Order' && frm.doc.sales_order) {
+            populate_cargo_items(frm, 'Sales Order', frm.doc.sales_order);
+        }
+    },
+
+    sales_invoice: function(frm) {
+        if (frm.doc.based_on === 'Sales Invoice' && frm.doc.sales_invoice) {
+            populate_cargo_items(frm, 'Sales Invoice', frm.doc.sales_invoice);
+        }
+    },
+
+    delivery_note: function(frm) {
+        if (frm.doc.based_on === 'Delivery Note' && frm.doc.delivery_note) {
+            populate_cargo_items(frm, 'Delivery Note', frm.doc.delivery_note);
+        }
+    },
+
+    stock_entry: function(frm) {
+        if (frm.doc.based_on === 'Stock Entry' && frm.doc.stock_entry) {
+            populate_cargo_items(frm, 'Stock Entry', frm.doc.stock_entry);
+        }
+    },
+
+    // Fallback: Before Save
+    validate: async function(frm) {
+        if (!frm.doc.cargo_registration_details || frm.doc.cargo_registration_details.length === 0) {
+            let doctype_map = {
+                "Purchase Order": frm.doc.purchase_order,
+                "Sales Order": frm.doc.sales_order,
+                "Sales Invoice": frm.doc.sales_invoice,
+                "Delivery Note": frm.doc.delivery_note,
+                "Stock Entry": frm.doc.stock_entry
+            };
+
+            let linked_doc = doctype_map[frm.doc.based_on];
+            if (linked_doc) {
+                await populate_cargo_items(frm, frm.doc.based_on, linked_doc);
+            }
+        }
+    }
+
 });
 
 frappe.ui.form.on('Cargo Detail', {
@@ -362,3 +418,94 @@ frappe.ui.form.on('Requested Fund Details', {
         });
     }
 });
+
+
+// Custom mbq
+frappe.ui.form.on("Cargo Registration", {
+    based_on: function(frm) {
+        frm.clear_table('cargo_registration_details');
+        frm.refresh_field('cargo_registration_details');
+    },
+
+    purchase_order: function(frm) {
+        if (frm.doc.based_on === 'Purchase Order' && frm.doc.purchase_order) {
+            populate_cargo_items(frm, 'Purchase Order', frm.doc.purchase_order);
+        }
+    },
+
+    sales_order: function(frm) {
+        if (frm.doc.based_on === 'Sales Order' && frm.doc.sales_order) {
+            populate_cargo_items(frm, 'Sales Order', frm.doc.sales_order);
+        }
+    },
+
+    sales_invoice: function(frm) {
+        if (frm.doc.based_on === 'Sales Invoice' && frm.doc.sales_invoice) {
+            populate_cargo_items(frm, 'Sales Invoice', frm.doc.sales_invoice);
+        }
+    },
+
+    delivery_note: function(frm) {
+        if (frm.doc.based_on === 'Delivery Note' && frm.doc.delivery_note) {
+            populate_cargo_items(frm, 'Delivery Note', frm.doc.delivery_note);
+        }
+    },
+
+    stock_entry: function(frm) {
+        if (frm.doc.based_on === 'Stock Entry' && frm.doc.stock_entry) {
+            populate_cargo_items(frm, 'Stock Entry', frm.doc.stock_entry);
+        }
+    },
+
+    // Fallback: Before Save
+    validate: async function(frm) {
+        if (!frm.doc.cargo_registration_details || frm.doc.cargo_registration_details.length === 0) {
+            let doctype_map = {
+                "Purchase Order": frm.doc.purchase_order,
+                "Sales Order": frm.doc.sales_order,
+                "Sales Invoice": frm.doc.sales_invoice,
+                "Delivery Note": frm.doc.delivery_note,
+                "Stock Entry": frm.doc.stock_entry
+            };
+
+            let linked_doc = doctype_map[frm.doc.based_on];
+            if (linked_doc) {
+                await populate_cargo_items(frm, frm.doc.based_on, linked_doc);
+            }
+        }
+    }
+});
+
+// Fetch and populate child items
+async function populate_cargo_items(frm, source_doctype, source_name) {
+    try {
+        const doc = await frappe.db.get_doc(source_doctype, source_name);
+        const items = doc.items || [];
+
+        if (!items.length) {
+            frappe.msgprint(__(`No items found in the selected ${source_doctype}.`));
+            return;
+        }
+
+        frm.clear_table('cargo_registration_details');
+
+        items.forEach(item => {
+            let row = frm.add_child('cargo_registration_details');
+            let qty = flt(item.qty || 0);
+            let weight = flt(item.weight_per_unit || 0);
+            let total_weight = item.total_weight ? flt(item.total_weight) : qty * weight;
+
+            row.item_code = item.item_code;
+            row.item_name = item.item_name;
+            row.uom = item.uom;
+            row.quantity = qty;
+            row.weight = weight;
+            row.total_weight = total_weight;
+        });
+
+        frm.refresh_field('cargo_registration_details');
+    } catch (err) {
+        console.error(`Error fetching ${source_doctype} - ${source_name}:`, err);
+        frappe.msgprint(`Error loading items from ${source_doctype}`);
+    }
+}
