@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TripLocation(Document):
+class CargoRegistrationDetails(Document):
 	pass
