@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:description",
  "creation": "2023-05-04 12:36:53.540160",
  "default_view": "List",
  "doctype": "DocType",
@@ -27,7 +28,8 @@
   {
    "fieldname": "description",
    "fieldtype": "Data",
-   "label": "Location Name"
+   "label": "Location Name",
+   "unique": 1
   },
   {
    "fieldname": "location_latitude_longitude",
@@ -118,10 +120,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 11:50:03.299923",
+ "modified": "2025-07-05 16:57:24.973675",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Trip Locations",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -137,6 +140,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

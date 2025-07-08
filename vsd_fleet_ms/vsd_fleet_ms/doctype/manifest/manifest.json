@@ -274,9 +274,10 @@
   {
    "depends_on": "eval:doc.transporter_type == \"Sub-Contractor\"",
    "fieldname": "sub_contractor_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Sub-Contractor Name",
-   "mandatory_depends_on": "eval:doc.transporter_type == \"Sub-Contractor\""
+   "mandatory_depends_on": "eval:doc.transporter_type == \"Sub-Contractor\"",
+   "options": "Supplier"
   },
   {
    "fetch_from": "route.starting_point",
@@ -301,7 +302,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-10 09:40:37.484494",
+ "modified": "2025-07-05 17:18:00.550614",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Manifest",
@@ -339,6 +340,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
